@@ -1,0 +1,86 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Azure DevOps Pipeline — Build & Push to Azure Container Registry
+#
+# Required pipeline variables (set in Azure DevOps > Pipelines > Variables):
+#   ACR_NAME          e.g.  myregistry          (without .azurecr.io)
+#   ACR_SERVICE_CONN  e.g.  my-acr-service-connection
+#   IMAGE_NAME        e.g.  prashantwalunj-portfolio
+# ─────────────────────────────────────────────────────────────────────────────
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - docs/**
+      - README.md
+
+pr:
+  branches:
+    include:
+      - main
+
+variables:
+  imageRepository: $(IMAGE_NAME)
+  containerRegistry: $(ACR_NAME).azurecr.io
+  dockerfilePath: $(Build.SourcesDirectory)/Dockerfile
+  tag: $(Build.BuildId)
+  latestTag: latest
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  # ── Stage 1: Build & Push ──────────────────────────────────────────────────
+  - stage: Build
+    displayName: Build and Push Docker Image
+    jobs:
+      - job: BuildPush
+        displayName: Build and push image to ACR
+        steps:
+          - checkout: self
+
+          - task: Docker@2
+            displayName: Build and push image
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: $(ACR_SERVICE_CONN)
+              tags: |
+                $(tag)
+                $(latestTag)
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish image metadata
+            inputs:
+              targetPath: $(Pipeline.Workspace)
+              artifact: drop
+              publishLocation: pipeline
+
+  # ── Stage 2: Smoke test (optional — pulls and runs briefly) ───────────────
+  - stage: Verify
+    displayName: Smoke Test
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - job: SmokeTest
+        displayName: Pull image and verify HTTP 200
+        steps:
+          - task: Docker@2
+            displayName: Login to ACR
+            inputs:
+              command: login
+              containerRegistry: $(ACR_SERVICE_CONN)
+
+          - script: |
+              docker pull $(containerRegistry)/$(imageRepository):$(tag)
+              docker run -d --name portfolio-test -p 5000:5000 \
+                $(containerRegistry)/$(imageRepository):$(tag)
+              sleep 8
+              curl -sf http://localhost:5000 | grep -q "Prashant" \
+                && echo "Smoke test passed" \
+                || (echo "Smoke test FAILED" && exit 1)
+              docker rm -f portfolio-test
+            displayName: Run container and verify response

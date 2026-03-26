@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  portfolio:
+    build:
+      context: ..          # project root (one level up from devops/)
+      dockerfile: Dockerfile
+    image: prashantwalunj-portfolio:local
+    container_name: portfolio
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    volumes:
+      # Live-reload: mount source so edits reflect without rebuild
+      - ../templates:/app/templates:ro
+      - ../static:/app/static:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
