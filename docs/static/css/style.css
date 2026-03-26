@@ -309,16 +309,17 @@ ul { list-style: none; }
 
 .ring-1 {
   width: 170px; height: 170px;
-  border: 1.5px solid rgba(99,102,241,0.2);
+  border: 1.5px solid rgba(99,102,241,0.28);
+  box-shadow: 0 0 18px rgba(99,102,241,0.07) inset;
 }
 .ring-2 {
   width: 280px; height: 280px;
-  border: 1px dashed rgba(99,102,241,0.15);
+  border: 1px dashed rgba(99,102,241,0.22);
   animation: rotate 22s linear infinite;
 }
 .ring-3 {
   width: 380px; height: 380px;
-  border: 1px solid rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.2);
   animation: rotate 34s linear infinite reverse;
 }
 
@@ -345,28 +346,125 @@ ul { list-style: none; }
   animation: avatar-pulse 4s ease-in-out infinite;
 }
 
-.floating-badge {
+/* ORBITAL BADGE WRAPPERS */
+.badge-orbit {
   position: absolute;
-  background: #fff;
-  border: 1px solid var(--border-strong);
-  color: var(--text);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0.38rem 0.85rem;
-  border-radius: 999px;
-  box-shadow: var(--shadow-sm);
-  animation: float 3.5s ease-in-out infinite;
-  white-space: nowrap;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
 
-.badge-1 { top: 22px;   right: 55px;  animation-delay: 0s;     }
-.badge-2 { bottom: 55px; right: 18px;  animation-delay: 0.9s;   }
-.badge-3 { bottom: 28px; left: 38px;   animation-delay: 1.8s;   }
-.badge-4 { top: 62px;   left: 18px;   animation-delay: 2.7s;   }
+.floating-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.38rem 0.9rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.12), 0 1px 4px rgba(0,0,0,0.08);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  pointer-events: all;
+  cursor: default;
+  transition: box-shadow 0.3s ease;
+}
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-9px); }
+.floating-badge:hover {
+  box-shadow: 0 8px 32px rgba(99,102,241,0.28), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Colored tech dots */
+.bdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.bdot-azure    { background: #0078d4; box-shadow: 0 0 5px rgba(0,120,212,0.55); }
+.bdot-k8s      { background: #326ce5; box-shadow: 0 0 5px rgba(50,108,229,0.55); }
+.bdot-tf       { background: #7b42bc; box-shadow: 0 0 5px rgba(123,66,188,0.55); }
+.bdot-docker   { background: #2496ed; box-shadow: 0 0 5px rgba(36,150,237,0.55); }
+.bdot-devops   { background: #00a4ef; box-shadow: 0 0 5px rgba(0,164,239,0.55); }
+.bdot-openshift{ background: #ee0000; box-shadow: 0 0 5px rgba(238,0,0,0.55); }
+.bdot-jenkins  { background: #f0a500; box-shadow: 0 0 5px rgba(240,165,0,0.55); }
+
+/* ===== THREE-ORBIT SYSTEM =====
+   Inner  (110px, clockwise,  24s): Azure Cloud [0°],  Docker     [180°]
+   Middle (145px, clockwise,  34s): Kubernetes  [0°],  Openshift  [120°], Jenkins [240°]
+   Outer  (168px, counter-CW, 46s): Terraform   [0°],  Azure DevOps [180°]
+   Badges on the same orbit share one keyframe + negative delay offset
+   so they stay evenly spaced and never overlap.
+*/
+
+@keyframes orbit-inner {
+  from { transform: rotate(20deg); }
+  to   { transform: rotate(380deg); }
+}
+@keyframes counter-inner {
+  from { transform: translateX(110px) translateY(-50%) rotate(-20deg); }
+  to   { transform: translateX(110px) translateY(-50%) rotate(-380deg); }
+}
+
+@keyframes orbit-mid {
+  from { transform: rotate(90deg); }
+  to   { transform: rotate(450deg); }
+}
+@keyframes counter-mid {
+  from { transform: translateX(145px) translateY(-50%) rotate(-90deg); }
+  to   { transform: translateX(145px) translateY(-50%) rotate(-450deg); }
+}
+
+@keyframes orbit-outer {
+  from { transform: rotate(160deg); }
+  to   { transform: rotate(-200deg); }
+}
+@keyframes counter-outer {
+  from { transform: translateX(168px) translateY(-50%) rotate(-160deg); }
+  to   { transform: translateX(168px) translateY(-50%) rotate(200deg); }
+}
+
+/* Azure Cloud — inner, 0° */
+.badge-orbit-1 { animation: orbit-inner 24s linear infinite; }
+.badge-orbit-1 .floating-badge { animation: counter-inner 24s linear infinite, badge-appear 0.5s ease 0.4s both; }
+
+/* Docker — inner, 180° offset → −12s delay */
+.badge-orbit-4 { animation: orbit-inner 24s linear -12s infinite; }
+.badge-orbit-4 .floating-badge { animation: counter-inner 24s linear -12s infinite, badge-appear 0.5s ease 0.7s both; }
+
+/* Kubernetes — middle, 0° */
+.badge-orbit-2 { animation: orbit-mid 34s linear infinite; }
+.badge-orbit-2 .floating-badge { animation: counter-mid 34s linear infinite, badge-appear 0.5s ease 0.6s both; }
+
+/* Openshift — middle, 120° offset → −11.33s */
+.badge-orbit-6 { animation: orbit-mid 34s linear -11.33s infinite; }
+.badge-orbit-6 .floating-badge { animation: counter-mid 34s linear -11.33s infinite, badge-appear 0.5s ease 1.2s both; }
+
+/* Jenkins — middle, 240° offset → −22.67s */
+.badge-orbit-7 { animation: orbit-mid 34s linear -22.67s infinite; }
+.badge-orbit-7 .floating-badge { animation: counter-mid 34s linear -22.67s infinite, badge-appear 0.5s ease 1.5s both; }
+
+/* Terraform — outer, 0° */
+.badge-orbit-3 { animation: orbit-outer 46s linear infinite; }
+.badge-orbit-3 .floating-badge { animation: counter-outer 46s linear infinite, badge-appear 0.5s ease 0.9s both; }
+
+/* Azure DevOps — outer, 180° offset → −23s */
+.badge-orbit-5 { animation: orbit-outer 46s linear -23s infinite; }
+.badge-orbit-5 .floating-badge { animation: counter-outer 46s linear -23s infinite, badge-appear 0.5s ease 1.1s both; }
+
+@keyframes badge-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* ===== STATS BAR ===== */
@@ -915,16 +1013,6 @@ ul { list-style: none; }
   position: relative;
 }
 
-/* ===== FLOATING BADGE entrance ===== */
-@keyframes badge-in {
-  from { opacity: 0; transform: scale(0.7) translateY(6px); }
-  to   { opacity: 1; transform: scale(1)   translateY(0);   }
-}
-
-.badge-1 { animation: float 3.5s ease-in-out 0s   infinite, badge-in 0.4s ease 0.8s both; }
-.badge-2 { animation: float 3.5s ease-in-out 0.9s infinite, badge-in 0.4s ease 1.0s both; }
-.badge-3 { animation: float 3.5s ease-in-out 1.8s infinite, badge-in 0.4s ease 1.2s both; }
-.badge-4 { animation: float 3.5s ease-in-out 2.7s infinite, badge-in 0.4s ease 1.4s both; }
 
 /* ===== CERT CARD shimmer on hover ===== */
 .cert-card {
