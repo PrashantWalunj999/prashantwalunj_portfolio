@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prashant Walunj | DevOps Engineer</title>
+  <meta name="description" content="Prashant Walunj — DevOps Engineer with 5+ years expertise in Azure, Kubernetes, Terraform, Docker, and CI/CD pipelines. Based in Pune, India." />
+  <meta name="author" content="Prashant Walunj" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Prashant Walunj | DevOps Engineer" />
+  <meta property="og:description" content="DevOps Engineer with 5+ years expertise in Azure, Kubernetes, Terraform, Docker, and CI/CD pipelines." />
+  <meta property="og:image"       content="/static/images/prashant.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Prashant Walunj | DevOps Engineer" />
+  <meta name="twitter:description" content="DevOps Engineer with 5+ years expertise in Azure, Kubernetes, Terraform, Docker, and CI/CD pipelines." />
+  <meta name="twitter:image"      content="/static/images/prashant.jpg" />
   <link rel="stylesheet" href="static/css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
 </head>
@@ -14,16 +24,22 @@
     <div class="nav-container">
       <a href="#hero" class="nav-logo">PW</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
+        <li><a href="#" id="about-trigger">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#certifications">Certifications</a></li>
-        <li><a href="mailto:prashantwalunj@outlook.com" class="nav-cta">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-right">
+        <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -52,10 +68,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
           Pune, India
         </span>
+        <a href="https://www.linkedin.com/in/prashant-walunj/" target="_blank" rel="noopener noreferrer" class="contact-chip contact-chip-linkedin">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/PrashantWalunj999" target="_blank" rel="noopener noreferrer" class="contact-chip contact-chip-github">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
       </div>
       <div class="hero-actions">
         <a href="#experience" class="btn btn-primary">View Experience</a>
-        <a href="mailto:prashantwalunj@outlook.com" class="btn btn-outline">Get In Touch</a>
+        <a href="static/files/resume.pdf" download="PrashantWalunj_Resume.pdf" class="btn btn-outline btn-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
       </div>
     </div>
     <div class="hero-graphic">
@@ -428,6 +455,72 @@
     </div>
   </section>
 
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact Me</h2>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <h3>Let's work together</h3>
+          <p>I'm currently open to new opportunities. Whether you have a project in mind, a question, or just want to connect — feel free to reach out.</p>
+          <div class="contact-details">
+            <a href="mailto:prashantwalunj@outlook.com" class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <span>prashantwalunj@outlook.com</span>
+            </a>
+            <a href="tel:+917304373999" class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <span>+91 7304373999</span>
+            </a>
+            <a href="https://www.linkedin.com/in/prashant-walunj/" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </div>
+              <span>linkedin.com/in/prashant-walunj</span>
+            </a>
+            <a href="https://github.com/PrashantWalunj999" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </div>
+              <span>github.com/PrashantWalunj999</span>
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Full Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email Address</label>
+              <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="Opportunity / Collaboration / Question" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Tell me about the role, project, or how I can help..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -437,10 +530,55 @@
         <a href="mailto:prashantwalunj@outlook.com">prashantwalunj@outlook.com</a>
         <span>&bull;</span>
         <a href="tel:+917304373999">+91 7304373999</a>
+        <span>&bull;</span>
+        <a href="https://www.linkedin.com/in/prashant-walunj/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span>&bull;</span>
+        <a href="https://github.com/PrashantWalunj999" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
       <p class="footer-copy">&copy; 2025 Prashant Walunj. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- About Modal -->
+  <div class="modal-overlay" id="about-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="about-modal-close" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <img src="static/images/prashant.jpg" alt="Prashant Walunj" class="modal-avatar" />
+        <div>
+          <h2 id="modal-title" class="modal-name">Prashant Walunj</h2>
+          <p class="modal-role">DevOps Engineer</p>
+          <span class="hero-badge" style="display:inline-flex;margin-top:0.5rem;font-size:0.72rem;">Available for opportunities</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="modal-placeholder">About content coming soon — check back later!</p>
+        <div class="modal-chips">
+          <a href="mailto:prashantwalunj@outlook.com" class="contact-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+          <a href="https://www.linkedin.com/in/prashant-walunj/" target="_blank" rel="noopener noreferrer" class="contact-chip contact-chip-linkedin">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/PrashantWalunj999" target="_blank" rel="noopener noreferrer" class="contact-chip contact-chip-github">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a href="static/files/resume.pdf" download="PrashantWalunj_Resume.pdf" class="contact-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <script src="static/js/main.js"></script>
 </body>
