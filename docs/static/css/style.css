@@ -225,7 +225,7 @@ body.dark .dark-toggle .icon-moon { display: block; }
   font-weight: 800;
   letter-spacing: -2.5px;
   line-height: 1.05;
-  background: linear-gradient(135deg, #0f0f1a 0%, #3730a3 60%, #06b6d4 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 55%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -824,35 +824,15 @@ body.dark .dark-toggle .icon-moon { display: block; }
   overflow: hidden;
 }
 
-/* per-type top accent */
-.cert-card.cert-tf  { border-top-color: #7c3aed; }
-.cert-card.cert-sm  { border-top-color: #059669; }
-.cert-card.cert-ms  { border-top-color: var(--primary); }
-
-/* active card: faint gradient wash */
-.cert-card.cert-active {
-  background: linear-gradient(135deg, var(--surface) 70%, rgba(99,102,241,0.04) 100%);
-}
-.cert-card.cert-active.cert-tf {
-  background: linear-gradient(135deg, var(--surface) 70%, rgba(124,58,237,0.05) 100%);
-}
-.cert-card.cert-active.cert-sm {
-  background: linear-gradient(135deg, var(--surface) 70%, rgba(16,185,129,0.05) 100%);
-}
-
 /* expired: slightly muted */
-.cert-card.cert-expired {
-  opacity: 0.72;
-}
+.cert-card.cert-expired { opacity: 0.72; }
 .cert-card.cert-expired:hover { opacity: 1; }
 
-.cert-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
-}
-.cert-card.cert-tf:hover  { box-shadow: 0 8px 28px rgba(124,58,237,0.15); border-top-color: #7c3aed; }
-.cert-card.cert-sm:hover  { box-shadow: 0 8px 28px rgba(16,185,129,0.15); border-top-color: #059669; }
-.cert-card.cert-ms:hover  { box-shadow: 0 8px 28px rgba(99,102,241,0.15); border-top-color: var(--primary); }
+/* hover: show accent top border + colored glow */
+.cert-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.cert-card.cert-tf:hover  { border-top-color: #7c3aed; box-shadow: 0 8px 28px rgba(124,58,237,0.18); }
+.cert-card.cert-sm:hover  { border-top-color: #059669; box-shadow: 0 8px 28px rgba(16,185,129,0.18); }
+.cert-card.cert-ms:hover  { border-top-color: var(--primary); box-shadow: 0 8px 28px rgba(99,102,241,0.18); }
 
 .cert-logo {
   width: 46px; height: 46px;
@@ -1431,6 +1411,13 @@ body.dark .hero-wrapper {
   background: linear-gradient(135deg, #0d1017 0%, #151b28 55%, #1a2235 100%);
 }
 
+body.dark .hero-name {
+  background: linear-gradient(135deg, #c7d2fe 0%, #818cf8 55%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 body.dark .floating-badge {
   background: rgba(26, 34, 53, 0.95);
   border-color: rgba(99,102,241,0.28);
@@ -1446,11 +1433,18 @@ body.dark .section-alt { background: var(--bg-2); }
 body.dark .skill-card,
 body.dark .timeline-card,
 body.dark .edu-card,
-body.dark .cert-card,
 body.dark .modal-box {
   background: var(--surface);
   border-color: var(--border-strong);
 }
+
+body.dark .cert-card {
+  background: var(--surface);
+  border-color: var(--border-strong);
+}
+body.dark .cert-card.cert-tf:hover { border-top-color: #9f7aea; }
+body.dark .cert-card.cert-sm:hover { border-top-color: #34d399; }
+body.dark .cert-card.cert-ms:hover { border-top-color: #818cf8; }
 
 body.dark .form-group input,
 body.dark .form-group textarea {
