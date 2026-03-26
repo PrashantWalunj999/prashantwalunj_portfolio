@@ -812,6 +812,7 @@ body.dark .dark-toggle .icon-moon { display: block; }
 .cert-card {
   background: var(--surface);
   border: 1px solid var(--border);
+  border-top: 3px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem 1.4rem;
   display: flex;
@@ -819,13 +820,39 @@ body.dark .dark-toggle .icon-moon { display: block; }
   gap: 1rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
+
+/* per-type top accent */
+.cert-card.cert-tf  { border-top-color: #7c3aed; }
+.cert-card.cert-sm  { border-top-color: #059669; }
+.cert-card.cert-ms  { border-top-color: var(--primary); }
+
+/* active card: faint gradient wash */
+.cert-card.cert-active {
+  background: linear-gradient(135deg, var(--surface) 70%, rgba(99,102,241,0.04) 100%);
+}
+.cert-card.cert-active.cert-tf {
+  background: linear-gradient(135deg, var(--surface) 70%, rgba(124,58,237,0.05) 100%);
+}
+.cert-card.cert-active.cert-sm {
+  background: linear-gradient(135deg, var(--surface) 70%, rgba(16,185,129,0.05) 100%);
+}
+
+/* expired: slightly muted */
+.cert-card.cert-expired {
+  opacity: 0.72;
+}
+.cert-card.cert-expired:hover { opacity: 1; }
 
 .cert-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
-  border-color: rgba(99,102,241,0.2);
 }
+.cert-card.cert-tf:hover  { box-shadow: 0 8px 28px rgba(124,58,237,0.15); border-top-color: #7c3aed; }
+.cert-card.cert-sm:hover  { box-shadow: 0 8px 28px rgba(16,185,129,0.15); border-top-color: #059669; }
+.cert-card.cert-ms:hover  { box-shadow: 0 8px 28px rgba(99,102,241,0.15); border-top-color: var(--primary); }
 
 .cert-logo {
   width: 46px; height: 46px;
@@ -837,11 +864,14 @@ body.dark .dark-toggle .icon-moon { display: block; }
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
 }
 
-.cert-logo.terraform { background: rgba(124,58,237,0.1); color: #7c3aed; }
-.cert-logo.scrum     { background: rgba(16,185,129,0.1); color: #059669; }
-.cert-logo.microsoft { background: rgba(99,102,241,0.1); color: var(--primary); }
+.cert-card:hover .cert-logo { transform: scale(1.1); }
+
+.cert-logo.terraform { background: rgba(124,58,237,0.12); color: #7c3aed; }
+.cert-logo.scrum     { background: rgba(16,185,129,0.12); color: #059669; }
+.cert-logo.microsoft { background: rgba(99,102,241,0.12); color: var(--primary); }
 
 .cert-content { flex: 1; min-width: 0; }
 
